@@ -1,16 +1,14 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Nav from "./components/Nav";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import Container from "./Container";
-import Row from "./Row";
-import Column from "./Column";
-import friends from "./friends.json";
+import Container from ".utils/Container";
+import Row from ".utils/Row";
+import Column from ".utils/Column";
+import Pictures from ".utils/Pictures";
 import "./App.css";
 
-function shuffleFriends(array) {
+function shufflePictures(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -21,7 +19,7 @@ function shuffleFriends(array) {
 class App extends Component {
   // Set this.state
   state = {
-    friends,
+    pictures,
     currentScore: 0,
     topscore: 0,
     rightwrong: "",
@@ -55,43 +53,43 @@ class App extends Component {
     this.setState({
       currentScore: 0,
       topScore: this.state.topScore,
-      rightWrong: "You Failed!  Let me drink your tears!",
+      rightWrong: "You Lost :(",
       clicked: []
     });
     this.handleShuffle();
   };
 
   handleShuffle = () => {
-    let shuffledFriends = shuffleFriends(friends);
-    this.setState({ friends: shuffledFriends });
+    let shuffledPictures = shufflePictures(pictures);
+    this.setState({ pictures: shuffledPictures });
   };
   
   render() {
     return (
       <Wrapper>
         <Nav
-          title="The Venture Brother's Clicky Game"
+          title="Clicky Game"
           score={this.state.currentScore}
           topscore={this.state.topScore}
           rightwrong={this.state.rightwrong}
         />
 
         <Title>
-          Be wary, do not click on a duplicate. Go Team Venture!
+          Clicky Game!
         </Title>
 
         <Container>
           <Row>
-            {this.state.friends.map(friend => (
+            {this.state.pictures.map(picture => (
               <Column size="md-3 sm-6">
                 <FriendCard
-                  key={friend.id}
+                  key={picture.id}
                   handleClick={this.handleClick}
                   handleIncrement={this.handleIncrement}
                   handleReset={this.handleReset}
                   handleShuffle={this.handleShuffle}
-                  id={friend.id}
-                  image={friend.image}
+                  id={picture.id}
+                  image={friend.picture}
                 />
               </Column>
             ))}
@@ -103,31 +101,3 @@ class App extends Component {
 }
 
 export default App;
-=======
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
->>>>>>> e099a5465e5a37a5402ce19521d424e7eac7c38d
